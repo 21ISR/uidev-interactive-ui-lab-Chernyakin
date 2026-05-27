@@ -171,3 +171,7 @@ footer {
     transform: translateX(-50%);
     white-space: nowrap;
 }
+
+.tooltip img {
+    width: 100%;
+}
