@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Корпоративный шаблон</title>
         <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
     </head>
     <body>
         <header>
@@ -45,12 +46,12 @@
                             <h2>Индивидуальный подход</h2>
                         </div>
                     </div>
-                    <div class="slider-arrow slider-arrow-left">&lt;</div>
-                    <div class="slider-arrow slider-arrow-right">&gt;</div>
+                    <div data-index= '-1' class="slider-arrow slider-arrow-left">&lt;</div>
+                    <div data-index= '1' class="slider-arrow slider-arrow-right">&gt;</div>
                     <div class="slider-dots">
-                        <div class="slider-dot active"></div>
-                        <div class="slider-dot"></div>
-                        <div class="slider-dot"></div>
+                        <div data-dot = '0' class="slider-dot active"></div>
+                        <div data-dot = '1' class="slider-dot"></div>
+                        <div data-dot = '2' class="slider-dot"></div>
                     </div>
                 </div>
 
@@ -233,7 +234,7 @@
         </footer>
 
         <!-- Попап -->
-        <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-over" id="popup-over">
             <div class="popup">
                 <button class="popup-close">&times;</button>
                 <h2>Свяжитесь с нами</h2>
