@@ -1,10 +1,72 @@
-const popup = document.querySelector('.popup-overlay')
-const openBtn = document.querySelector('#show-popup')
-const closeBtn = document.querySelector('.popup-close')
+const popup = document.querySelector('.popup-over')
+const openbutton = document.querySelector('#show-popup')
+const closebutton = document.querySelector('.popup-close')
 
-openBtn.addEventListener('click', () => {
-    popup.classList.add('show')
+openbutton.addEventListener('click', () => {
+    popup.classList.add('show')})
+
+closebutton.addEventListener('click', () => {
+    popup.classList.remove('show')})
+
+const headers = document.querySelectorAll('.accordion-header')
+headers.forEach((header) => {
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling
+        const opened = header.classList.contains('active')
+        if (opened) {
+            content.style.maxHeight = null}
+        else {
+            content.style.maxHeight = content.scrollHeight + 'px'}
+        header.classList.toggle('active')})
 })
-closeBtn.addEventListener('click', () => {
-    popup.classList.remove('show')
+
+const buttons = document.querySelectorAll('.tab-btn')
+const tabcontent = document.querySelectorAll('.tab-content')
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab')
+        const targetContent = document.getElementById(tabId)
+        tabcontent.forEach((el) => el.classList.remove('active'))
+        targetContent.classList.add('active')
+        button.classList.add('active')})
+})
+
+const tooltips = document.querySelectorAll('.tooltip')
+tooltips.forEach((tooltip) => {
+    tooltip.addEventListener('mouseenter', () => {
+        const text = tooltip.querySelector('.tooltip-text')
+        text.style.visibility = 'visible';
+        text.style.opacity = 1})
+
+    tooltip.addEventListener('mouseleave', () => {
+        const text = tooltip.querySelector('.tooltip-text')
+        text.style.visibility = 'hidden'
+        text.style.opacity = 0})
+})
+
+const slides = document.querySelectorAll('.slide').length
+const slider = document.querySelector('.slider')
+const sliderbutton = document.querySelectorAll('.slider-arrow')
+const dots = document.querySelectorAll('.slider-dot')
+let currentSlide = 0
+
+function changeSlide(index) {
+    if (currentSlide === -1) { currentSlide = 2 }
+    console.log(currentSlide);
+    slider.style.transform = `translateX(-${slider.clientWidth * currentSlide}px)`
+    dots.forEach((el) => el.classList.remove('active'))
+    dots[currentSlide].classList.add('active')}
+
+sliderbutton.forEach((button) => {
+    button.addEventListener('click', () => {
+        const buttId = Number(button.getAttribute('data-index'))
+        currentSlide = (currentSlide + buttId) % slides
+        changeSlide()})
+})
+
+dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+        const dotId = Number(dot.getAttribute('data-dot'))
+        currentSlide = dotId
+        changeSlide()})
 })
