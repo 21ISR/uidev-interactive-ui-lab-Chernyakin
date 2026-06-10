@@ -46,27 +46,27 @@ tooltips.forEach((tooltip) => {
 
 const slides = document.querySelectorAll('.slide').length
 const slider = document.querySelector('.slider')
-const sliderbutton = document.querySelectorAll('.slider-arrow')
+const sliderBtn = document.querySelectorAll('.slider-arrow')
 const dots = document.querySelectorAll('.slider-dot')
-let currentSlide = 0
+let curslide = 0
 
 function changeSlide(index) {
-    if (currentSlide === -1) { currentSlide = 2 }
-    console.log(currentSlide);
-    slider.style.transform = `translateX(-${slider.clientWidth * currentSlide}px)`
+    if (curslide === -1) { curslide = 2 }
+    console.log(curslide);
+    slider.style.transform = `translateX(-${slider.clientWidth * curslide}px)`
     dots.forEach((el) => el.classList.remove('active'))
-    dots[currentSlide].classList.add('active')}
+    dots[curslide].classList.add('active')}
 
-sliderbutton.forEach((button) => {
+sliderBtn.forEach((button) => {
     button.addEventListener('click', () => {
         const buttId = Number(button.getAttribute('data-index'))
-        currentSlide = (currentSlide + buttId) % slides
+        curslide = (curslide + buttId) % slides
         changeSlide()})
 })
 
 dots.forEach((dot) => {
     dot.addEventListener('click', () => {
         const dotId = Number(dot.getAttribute('data-dot'))
-        currentSlide = dotId
+        curslide = dotId
         changeSlide()})
 })
